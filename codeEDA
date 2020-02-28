@@ -1,0 +1,31 @@
+######################################################################################################
+#                                                                                                    #
+#                                                                                                    #
+#     Análise de dados - TSimmigration - múltiplas bases de dados - Fevereiro a Março de 2020        #
+#                                                                                                    #
+#                                                                                                    #
+######################################################################################################
+
+#Levantando os packages necessários -----
+
+needed_libs <- c("tidyverse", "GGally","Hmisc","pastecs", "DataExplorer","summarytools",
+                 "epiDisplay","autoEDA","dataMaid","dlookr","ExPanDaR","esquisse")
+
+install_missing <- function(lib){
+  install.packages(lib,repos="https://cran.r-project.org/", dependencies = TRUE); 
+  library(lib, character.only = TRUE)}
+for (lib in needed_libs) 
+  tryCatch(library(lib, character.only=TRUE), error = function(e) install_missing(lib))
+
+----
+  
+#Overview do dataset us_perm_visas.csv---
+
+library(readr)
+dataset <- read_csv("us_perm_visas.csv") #la
+write_csv(dataset, "us_perm_visa_extracted.csv")
+
+df <- read_csv("us_perm_visa_extracted.csv")
+
+
+
